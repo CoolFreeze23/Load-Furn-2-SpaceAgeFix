@@ -69,7 +69,8 @@ local function get_filters(entity)
   for n = 1, entity.filter_slot_count do
     local filter = entity.get_filter(n)
     if filter then
-      filters[filter] = true
+      -- get_filter returns an ItemFilter table since 2.0
+      filters[type(filter) == "table" and filter.name or filter] = true
       filtered = true
     end
   end
@@ -102,25 +103,26 @@ local function wagon_transfer(wagon_data)
           end
         end
       else
-        local name = next(wagon.get_contents())
-        if name and line1.insert_at_back({ name = name.name }) then
-          wagon.remove({ name = name.name })
+        -- get_contents returns an array of ItemWithQualityCount
+        local item = wagon.get_contents()[1]
+        if item and line1.insert_at_back({ name = item.name, quality = item.quality }) then
+          wagon.remove({ name = item.name, quality = item.quality })
         end
-        name = next(wagon.get_contents())
-        if name and line2.insert_at_back({ name = name.name }) then
-          wagon.remove({ name = name.name })
+        item = wagon.get_contents()[1]
+        if item and line2.insert_at_back({ name = item.name, quality = item.quality }) then
+          wagon.remove({ name = item.name, quality = item.quality })
         end
       end
     elseif loader.loader_type == "input" then
-      for name in pairs(line1.get_contents()) do
-        if wagon.insert({ name = name.name }) == 1 then
-          line1.remove_item({ name = name.name })
+      for _, item in pairs(line1.get_contents()) do
+        if wagon.insert({ name = item.name, quality = item.quality }) == 1 then
+          line1.remove_item({ name = item.name, quality = item.quality })
           break
         end
       end
-      for name in pairs(line2.get_contents()) do
-        if wagon.insert({ name = name.name }) == 1 then
-          line2.remove_item({ name = name.name })
+      for _, item in pairs(line2.get_contents()) do
+        if wagon.insert({ name = item.name, quality = item.quality }) == 1 then
+          line2.remove_item({ name = item.name, quality = item.quality })
           break
         end
       end
@@ -129,7 +131,7 @@ local function wagon_transfer(wagon_data)
 end
 
 local function getLoaderSearchData(wagon, direction)
-  local size = prototypes.get_entity_filtered({})[wagon.name].collision_box --vanilla is {{-0.6, -2.4}, {0.6, 2.4}}
+  local size = prototypes.entity[wagon.name].collision_box --vanilla is {{-0.6, -2.4}, {0.6, 2.4}}
   local min_x = size.left_top.x
   local min_y = size.left_top.y
   local max_x = size.right_bottom.x

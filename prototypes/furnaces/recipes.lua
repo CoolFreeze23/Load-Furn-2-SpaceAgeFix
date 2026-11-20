@@ -13,7 +13,7 @@ function add_furnace_recipe(data)
         subgroup = "pro-furnace",
         energy_required = 1,
         results = {{type="item", name=name, amount=1}},
-        category = category,
+        categories = {category},
     }
 end
 
@@ -97,7 +97,7 @@ if settings.startup["steel-plate2"].value == true then
 local steel = {
 type = "recipe",
 name = "steel-plate2",
-category = "AdvFurn",
+categories = {"AdvFurn"},
 icon = "__Load-Furn-2-SpaceAgeFix__/graphics/icons/steel-plate.png",
 icon_size = 64,
 
@@ -118,7 +118,7 @@ data:extend({
   {
     type = "recipe",
     name = "cool",
-    category = "smelting",
+    categories = {"smelting"},
     icon = "__Load-Furn-2-SpaceAgeFix__/graphics/icons/coal.png",
     icon_size = 64,
     enabled = true,

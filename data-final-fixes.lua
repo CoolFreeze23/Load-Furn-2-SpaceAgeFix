@@ -53,8 +53,7 @@ itemGroups()
 -- Снять ограничение модулей производительности
 for _, recipeM in pairs (data.raw["recipe"]) do
     local cat_list1 = table.deepcopy(data.raw["assembling-machine"]["furnace-pro-01"]        ["crafting_categories"])
-    local cat = recipeM.category or "crafting"
-    if inlist(cat, cat_list1) then
+    if recipe_in_categories(recipeM, cat_list1) then
     recipe = table.deepcopy(recipeM)
         for _, modul in pairs (data.raw["module"]) do
             if modul.effect.productivity and modul.limitation ~= nil then

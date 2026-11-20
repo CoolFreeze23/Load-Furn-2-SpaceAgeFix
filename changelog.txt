@@ -1,27 +1,65 @@
------0.2.13-----
-extends upper limit of wood to coal ratio from 100 to 200
------0.2.12-----
-fix locale for new settings option
------0.2.11-----
-fix some translation issues, rebanlance wood to coal recipe
------0.2.10-----
-fix pt-BR language folder name
------0.2.9-----
-fix no pollution error
-add pt-BR locale credit [@duhyukora](https://mods.factorio.com/user/duhyukora)
------0.2.8-----
-fix name error
------0.2.7-----
-fix fix error while load to an old save
-fix capatibility issues with aai-loders
------0.2.6-----
-fix error while load to an old save
------0.2.5-----
-fix pipe connection positions
------0.2.4-----
-fix startup error.
------2.3-----
-adapted to factorion 2.0
-added module slot, 4, 6, 8, 12, 16 according to 5 furnace
------1.2-----
-new input fluid posstions.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 2026-11-21
+  Changes:
+    - Updated for Factorio 2.1 (unofficial update).
+    - Recipes use the 2.1 "categories" list instead of "category".
+  Bugfixes:
+    - Fixed a crash when building or rotating next to an underground belt: LuaEntity::neighbours was removed in 2.1, the far end is now found with underground_belt_neighbour.
+    - Fixed train loading crashes (map setting "Turn on work of loaders with trains"): item filters and inventory/belt contents are read in the 2.0+ table format.
+    - Legacy 10x recipes (startup setting "Cheat mod") detect recipe categories correctly again.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.14
+  Bugfixes:
+    - Loader snapping uses the 2.0 16-way direction values, so output loaders are no longer flipped to input when built next to a belt.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.13
+  Changes:
+    - extends upper limit of wood to coal ratio from 100 to 200
+---------------------------------------------------------------------------------------------------
+Version: 0.2.12
+  Changes:
+    - fix locale for new settings option
+---------------------------------------------------------------------------------------------------
+Version: 0.2.11
+  Changes:
+    - fix some translation issues, rebanlance wood to coal recipe
+---------------------------------------------------------------------------------------------------
+Version: 0.2.10
+  Changes:
+    - fix pt-BR language folder name
+---------------------------------------------------------------------------------------------------
+Version: 0.2.9
+  Changes:
+    - fix no pollution error
+    - add pt-BR locale credit [@duhyukora](https://mods.factorio.com/user/duhyukora)
+---------------------------------------------------------------------------------------------------
+Version: 0.2.8
+  Changes:
+    - fix name error
+---------------------------------------------------------------------------------------------------
+Version: 0.2.7
+  Changes:
+    - fix fix error while load to an old save
+    - fix capatibility issues with aai-loders
+---------------------------------------------------------------------------------------------------
+Version: 0.2.6
+  Changes:
+    - fix error while load to an old save
+---------------------------------------------------------------------------------------------------
+Version: 0.2.5
+  Changes:
+    - fix pipe connection positions
+---------------------------------------------------------------------------------------------------
+Version: 0.2.4
+  Changes:
+    - fix startup error.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.3
+  Changes:
+    - adapted to factorion 2.0
+    - added module slot, 4, 6, 8, 12, 16 according to 5 furnace
+---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+  Changes:
+    - new input fluid posstions.

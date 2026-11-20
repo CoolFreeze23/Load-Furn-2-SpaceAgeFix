@@ -130,12 +130,14 @@ function snapping.check_for_loaders(event, supported_loader_names)
         end
 
         -- also scan other exit of underground belt
-        if entity.type == "underground-belt" and entity.neighbours then
-            local loaders = find_loader_by_entity(entity.neighbours, supported_loader_names)
+        -- Factorio 2.1: LuaEntity::neighbours was removed, the other end is underground_belt_neighbour
+        local other_end = entity.type == "underground-belt" and entity.underground_belt_neighbour
+        if other_end then
+            local loaders = find_loader_by_entity(other_end, supported_loader_names)
             for _, loader in pairs(loaders) do
             local entities = find_entity_by_loader(loader)
                 for _, ent in pairs(entities) do
-                    if ent == entity.neighbours and ent ~= loader and snapTypes[ent.type] then
+                    if ent == other_end and ent ~= loader and snapTypes[ent.type] then
                         snap_loader_to_target(loader, ent, event)
                     end
                 end

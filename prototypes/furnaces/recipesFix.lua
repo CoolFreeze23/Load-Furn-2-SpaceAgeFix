@@ -9,6 +9,16 @@ function inlist(value, scanlist)
     return false
 end
 
+-- Factorio 2.1: recipes list their categories in `categories` (defaults to {"crafting"})
+function recipe_in_categories(recipe, scanlist)
+    for _, cat in pairs(recipe.categories or {"crafting"}) do
+        if inlist(cat, scanlist) then
+            return true
+        end
+    end
+    return false
+end
+
 -- Game crashes if ingredient amount is higher than this
 local maxIngredient = 65535
 
@@ -176,8 +186,7 @@ local function recipeSetup()
 
     for _, recipeBase in pairs(table.deepcopy(data.raw.recipe)) do
         if type(recipeBase) == "table" then
-            local cat = recipeBase.category or "crafting" -- Blank recipes categories are considered "crafting"
-            if inlist(cat, cat_list1) then
+            if recipe_in_categories(recipeBase, cat_list1) then
                 recipe = table.deepcopy(recipeBase)
                 -- Recipe is split into normal/expensive, one allowed to be blank, Edited, remove normal/expensive support
                 if (recipe.result or recipe.results) and recipe.ingredients then
@@ -208,7 +217,7 @@ local function recipeSetup()
                 if subgroup then
                     recipe.subgroup = subgroup .. "-AdvFurn"
                 end
-                recipe.category = "AdvFurn"
+                recipe.categories = {"AdvFurn"}
                 if recipe.icons and recipe.icon_size == 32 then
                     table.insert(recipe.icons, {icon = "__Load-Furn-2-SpaceAgeFix__/graphics/icons/logo32.png"})
                 elseif recipe.icons and recipe.icon_size == 64 then
