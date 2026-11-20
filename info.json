@@ -1,0 +1,19 @@
+{
+  "name": "Load-Furn-2-SpaceAgeFix",
+  "version": "0.2.14",
+  "title": "Advanced Furnaces 2 SpaceAgeFix",
+  "author": "fartdog, LightningMaster",
+  "contact": "",
+  "homepage": "",
+  "description": "Adds 5 furnaces whose crafting speed depends on the transport-belt speed * 3. Energy consumption and pollution is appropriate. In the settings, you can increase energy consumption. Сan work with other mods for example angelssmelting, bobplates, PY, IndustrialRevolution. fixed bad code and angelssmelting. added Bio Industries stuff. please report bugs or ideas. Language en, ru, de, fi, pt-BR.",
+  "factorio_version": "2.0",
+  "dependencies": [
+    "base >= 2.0",
+    "? deadlock-experiments",
+    "? angelssmelting",
+    "? bobplates",
+    "? pycoalprocessing",
+    "? IndustrialRevolution >= 2.0",
+    "? Bio_Industries"
+  ]
+}
